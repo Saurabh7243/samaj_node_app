@@ -21,7 +21,7 @@ const port = parseInt(process.env.DB_PORT || '5432')
 export const dataSource = new DataSource({
     type:'postgres',
     host: process.env.DB_HOST,
-    port: port,
+    port: 6543,
     username: process.env.DB_USER,
     password: process.env.DB_PASSWORD,
     database:process.env.DATABASE_NAME,
@@ -34,20 +34,23 @@ export const dataSource = new DataSource({
     // },
     entities: [Member,Business,Address_,Tenant,Announcement,Payment,MemberShip,MemberShipHistory,CommitteeRoles,Committee,Events,EnrollEvent],
     migrations: ["/migrations/**/*.ts"],
-    ssl:{
-        rejectUnauthorized:false
-    }
+    // ssl:{
+    //     rejectUnauthorized:false
+    // }
 });
 
 //for production
 // export const dataSource = new DataSource({
 //     type:'postgres',
-//     url: process.env.LIVE_DB_URL,
-//     port: 5432,
+//     // url: process.env.LIVE_DB_URL,
+//     url:"postgresql://postgres.qpreoufayqpurspxplrv:Saurabh@123!?<>@#$%@aws-0-ap-southeast-1.pooler.supabase.com:6543/postgres",
+//     port: 6543,
 //     synchronize:false,
 //     migrationsRun: true,
 //     logging: false,
-//     ssl:true,
+//     ssl:{
+//         rejectUnauthorized: false 
+//     },
 //     entities: [Member,Business,Address_,Tenant,Announcement,Payment,MemberShip,MemberShipHistory,CommitteeRoles,Committee,Events,EnrollEvent],
 //     migrations: ["/migrations/**/*.ts"],
 // });
