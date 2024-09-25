@@ -135,7 +135,7 @@ class generateMultipleUsers {
     const memberRepo = connection.getRepository(Member);
     try {
       
-      for (let i = 0; i<1; i++) {
+      for (let i = 0; i<100; i++) {
         let users =await generateFamilyMembers(new Date('7-2-2000'), new Date('7-2-2020'), 10000);
 
         for (let j = 0; j < users.length; j++) {
