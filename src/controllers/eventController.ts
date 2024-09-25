@@ -387,17 +387,17 @@ class EventController {
             return res.status(404).json({ message: "Member not found" });
         }
 
-        const memberEvent:any = member.events.find(event => event.id === eventId);
-        if (!memberEvent) {
-            return res.status(409).send({ message: "Member not enrolled in event" });
-        }
+        // const memberEvent:any = member.events.find(event => event.id === eventId);
+        // if (!memberEvent) {
+        //     return res.status(409).send({ message: "Member not enrolled in event" });
+        // }
 
-        if (memberEvent.isEventQrScanned) {
-            return res.status(409).send({ message: "Event already scanned" });
-        }
+        // if (memberEvent.isEventQrScanned) {
+        //     return res.status(409).send({ message: "Event already scanned" });
+        // }
 
-        memberEvent.isEventQrScanned = true;
-        await memberRepo.save(member);
+        // memberEvent.isEventQrScanned = true;
+        // await memberRepo.save(member);
 
         return res.status(200).json({ message: "Event scanned successfully", data: member });
     } catch (error) {

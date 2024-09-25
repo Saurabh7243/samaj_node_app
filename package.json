@@ -4,7 +4,7 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "start": "nodemon dist/src/index.js",
+    "start": "nodemon dist/index.js",
     "debug": "concurrently \"tsc -w\" \"nodemon --inspect dist/src/index.js\"",
     "build": "rimraf dist & npx tsc",
     "typeorm": "npx typeorm-ts-node-commonjs",
@@ -12,7 +12,8 @@
     "schema:sync": "npm run typeorm schema:sync -- -d ./src/db.ts ",
     "migration:show": "npm run typeorm migration:show -- -d ./src/db.ts ",
     "migration:generate": "npm run typeorm migration:generate -- -d ./src/db.ts",
-    "typeorm:create": "npm run typeorm migration:create "
+    "typeorm:create": "npm run typeorm migration:create ",
+    "deploy":"npm install & npm run build"
   },
   "devDependencies": {
     "@types/bcrypt": "^5.0.0",
