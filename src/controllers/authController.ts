@@ -63,10 +63,11 @@ class AuthController {
     }
     async superAdminRegistration(req:Request, res:Response, next:NextFunction) {
       
-      const firstName = "superadmin"
-      const password = "1234"
+      const firstName = "superadmin"//req.body.name
+      const password = "1234" //req.body.pass
       const tenantId:any = null;
-      const email = "superadmin@gmail.com"
+      const email = "superadmin@gmail.com"//req.body.email// 
+      
       try {
           const connection = await dbUtils.getDefaultConnection();
           const memberRepo = connection.getRepository(Member)

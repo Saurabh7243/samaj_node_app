@@ -3,6 +3,7 @@ import { Business } from "../models/business";
 import dbUtils from "../utils/db.utils";
 import { Member } from "../models/members";
 import { MemberRoleEnum, RelationEnum } from "../utils/enumData";
+import { hinduNames } from "./randomNames";
 
 // function members(start:Date, end:Date) {
 //     //
@@ -33,7 +34,8 @@ import { MemberRoleEnum, RelationEnum } from "../utils/enumData";
 
 async function generateFamilyMembers(start: Date, end: Date, familySize: number) {
   //;
-  var names = ["Alice", "Bob", "Charlie", "David", "Eve","Dev","Saurabh","Sagar","Rohit","dharmik","Eva","Rajan","Aaron","Harshad",  'Time', 'Past', 'Future', 'Dev',
+  var names = [
+  "Alice", "Bob", "Charlie", "David", "Eve","Dev","Saurabh","Sagar","Rohit","dharmik","Eva","Rajan","Aaron","Harshad",  'Time', 'Past', 'Future', 'Dev',
   'Fly', 'Flying', 'Soar', 'Soaring', 'Power', 'Falling',
   'Fall', 'Jump', 'Cliff', 'Mountain', 'Rend', 'Red', 'Blue',
   'Green', 'Yellow', 'Gold', 'Demon', 'Demonic', 'Panda', 'Cat',
@@ -55,10 +57,11 @@ async function generateFamilyMembers(start: Date, end: Date, familySize: number)
   'Slash', 'Melt', 'Melted', 'Melting', 'Fell', 'Wolf', 'Hound',
   'Legacy', 'Sharp', 'Dead', 'Mew', 'Chuckle', 'Bubba', 'Bubble', 'Sandwich', 'Smasher', 'Extreme', 'Multi', 
   'Universe', 'Ultimate', 'Death', 'Ready', 'Monkey', 'Elevator', 'Wrench', 'Grease', 'Head', 
-  'Theme', 'Grand', 'Cool', 'Kid', 'Boy', 'Girl', 'Vortex', 'Paradox'];
+  'Theme', 'Grand', 'Cool', 'Kid', 'Boy', 'Girl', 'Vortex', 'Paradox'
+];
   var roleId = ["User"];//Admin
   var relation = ["Wife", "Child"];
-  var tenantId = ["1"]; //["1" , "2" , "3","4"]
+  var tenantId =  ["1" , "2" , "3","4"] //["1"];
   var parentId:any=null 
   const connection = await dbUtils.getDefaultConnection();
   const memberRepo = connection.getRepository(Member);
@@ -71,7 +74,7 @@ async function generateFamilyMembers(start: Date, end: Date, familySize: number)
     parentId=findLastIndex.id + 1
   }
   // Generate the head of the family
-  const headName = names[Math.floor(Math.random() * names.length)];
+  const headName = hinduNames[Math.floor(Math.random() * hinduNames.length)];
   const headRelation = "Head";
   const headTenantId = tenantId[Math.floor(Math.random() * tenantId.length)];
   const headRolesId = roleId[Math.floor(Math.random() * roleId.length)];
@@ -134,9 +137,9 @@ class generateMultipleUsers {
     const connection = await dbUtils.getDefaultConnection();
     const memberRepo = connection.getRepository(Member);
     try {
-      
+      const createNumbersOfUser = 10000
       for (let i = 0; i<1; i++) {
-        let users =await generateFamilyMembers(new Date('7-2-2000'), new Date('7-2-2020'), 10000);
+        let users =await generateFamilyMembers(new Date('7-2-2000'), new Date('7-2-2020'), createNumbersOfUser);
 
         for (let j = 0; j < users.length; j++) {
           const currUser = users[j];
@@ -174,11 +177,11 @@ class generateMultipleUsers {
           }
 
         }
-        // return res.json({msg:"Data inserted successfully", sameData: existData});
+        return res.json({msg:"Data inserted successfully", sameData: existData});
       }
     } catch (error) {
       console.log(error);
-      res.json({ error: error });
+      return res.json({ error: error });
     }
   }
 
