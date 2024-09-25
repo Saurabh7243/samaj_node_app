@@ -17,46 +17,33 @@ dotenv.config();
 import "./"
 import { EnrollEvent } from './models/enrollEvent';
 // for testing  
-export const dataSource = new DataSource({
-    type:'postgres',
-    host: process.env.DB_HOST,
-    port: 5432,
-    username: process.env.DB_USER,
-    password: process.env.DB_PASSWORD,
-    database:process.env.DATABASE_NAME,//'family', //familytwo
-    synchronize:false,
-    migrationsRun: true,
-    logging: false,
-    // cache: {
-    //     type: "database",
-    //     duration: 30000
-    // },
-    entities: [Member,Business,Address_,Tenant,Announcement,Payment,MemberShip,MemberShipHistory,CommitteeRoles,Committee,Events,EnrollEvent],
-    migrations: ["/migrations/**/*.ts"],
-});
-
-//for production
-let { PROD_USER, PROD_PASSWORD, PROD_HOST, PROD_PORT, PROD_DATABASE_NAME } = process.env;
 // export const dataSource = new DataSource({
 //     type:'postgres',
-//     host:"samajapp.postgres.database.azure.com",
+//     host: process.env.DB_HOST,
 //     port: 5432,
-//     username: "samajadmin",
-//     password: "Fss@@123456789",
-//     database:"demoFamily",//'family', //familytwo
-//     ssl:true,
-//     extra:{
-//         ssl:{
-//             rejectUnauthorized:true
-//         }
-//     },
-//     synchronize:true,
+//     username: process.env.DB_USER,
+//     password: process.env.DB_PASSWORD,
+//     database:process.env.DATABASE_NAME,//'family', //familytwo
+//     synchronize:false,
 //     migrationsRun: true,
 //     logging: false,
 //     // cache: {
 //     //     type: "database",
 //     //     duration: 30000
 //     // },
-//     entities: [Member,Business,Address_,Tenant,Announcement,Payment,MemberShip,MemberShipHistory,CommitteeRoles,Committee,Events],
+//     entities: [Member,Business,Address_,Tenant,Announcement,Payment,MemberShip,MemberShipHistory,CommitteeRoles,Committee,Events,EnrollEvent],
 //     migrations: ["/migrations/**/*.ts"],
 // });
+
+//for production
+export const dataSource = new DataSource({
+    type:'postgres',
+    url: process.env.LIVE_DB_URL,
+    port: 5432,
+    synchronize:false,
+    migrationsRun: true,
+    logging: false,
+    ssl:true,
+    entities: [Member,Business,Address_,Tenant,Announcement,Payment,MemberShip,MemberShipHistory,CommitteeRoles,Committee,Events,EnrollEvent],
+    migrations: ["/migrations/**/*.ts"],
+});
