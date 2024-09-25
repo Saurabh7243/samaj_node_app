@@ -25,7 +25,7 @@ export const dataSource = new DataSource({
     username: process.env.DB_USER,
     password: process.env.DB_PASSWORD,
     database:process.env.DATABASE_NAME,
-    synchronize:true,
+    synchronize:false,
     migrationsRun: true,
     logging: false,
     // cache: {
@@ -34,6 +34,9 @@ export const dataSource = new DataSource({
     // },
     entities: [Member,Business,Address_,Tenant,Announcement,Payment,MemberShip,MemberShipHistory,CommitteeRoles,Committee,Events,EnrollEvent],
     migrations: ["/migrations/**/*.ts"],
+    ssl:{
+        rejectUnauthorized:false
+    }
 });
 
 //for production
