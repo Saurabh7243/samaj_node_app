@@ -177,8 +177,8 @@ class generateMultipleUsers {
           }
 
         }
-        return res.json({msg:"Data inserted successfully", sameData: existData});
       }
+      return res.json({msg:"Data inserted successfully", sameData: existData});
     } catch (error) {
       console.log(error);
       return res.json({ error: error });
