@@ -42,15 +42,14 @@ export const dataSource = new DataSource({
 //for production
 // export const dataSource = new DataSource({
 //     type:'postgres',
-//     // url: process.env.LIVE_DB_URL,
-//     url:"postgresql://postgres.qpreoufayqpurspxplrv:Saurabh@123!?<>@#$%@aws-0-ap-southeast-1.pooler.supabase.com:6543/postgres",
-//     port: 6543,
+//     host: 'localhost',
+//     port: 5432,
+//     username: 'postgres',
+//     password: 'root',
+//     database:'familyDemo',
 //     synchronize:false,
 //     migrationsRun: true,
 //     logging: false,
-//     ssl:{
-//         rejectUnauthorized: false 
-//     },
 //     entities: [Member,Business,Address_,Tenant,Announcement,Payment,MemberShip,MemberShipHistory,CommitteeRoles,Committee,Events,EnrollEvent],
 //     migrations: ["/migrations/**/*.ts"],
 // });
